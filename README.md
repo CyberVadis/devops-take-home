@@ -3,12 +3,13 @@
 ## Repository content
 - Folder with sample frontend application written in Angular
 - Folder with sample backend microservice written in .NET Core 2, C#
+
 The application is intended to show a list of recent security incidents
 
 ## Your Job
 The purpose of this exercise is to demonstrate how to setup the infrastructure in a deployed Azure environment ​using code​. You can use whatever tools you want to do this (Chef, Puppet, Terraform, etc.). A few caveats for how the application should be deployed:
 * Frontend is publicly available
-* Backend Service is a microservice that is called by frontend but is not publicly accessible
+* Backend service is a microservice that is called by frontend but is not publicly accessible
 * AzureSQL database should not be publicly accessible
 
 Don’t worry about fancy DNS for any parts of the application, accessing it via IP or Azure DNS is fine. Feel free to use Azure PaaS Services(e.g. App Services).
