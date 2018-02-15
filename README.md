@@ -1,6 +1,6 @@
-## DevOps Take Home Exercise 
+# DevOps Take Home Exercise 
 
-# Contents 
+## Contents 
 - 1 Folder containing:  ○ 1 sample frontend application written in Angular ○ 1 sample backend microservice written in .netCore C# and uses SQL 
 - The application is intended to show a list of recent security incidents 
 Your Job 
@@ -16,7 +16,7 @@ What we expect in your deliverable:
 - All the needed links to the actual infrastructure
 - All the needed links to your code 
 
-# Purpose of the Exercise 
+## Purpose of the Exercise 
 The purpose of the exercise is to understand how you approach the problem, the decisions you make in the infrastructure, and your ability to use code to accomplish things. 
 
 Please timebox your effort to 2 to 4 hours. An incomplete solution is not failing the exercise. 
