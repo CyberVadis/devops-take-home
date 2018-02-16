@@ -13,17 +13,16 @@ namespace devops_app_api.Controllers
     [Route("api/incidents")]
     public class IncidentController : Controller
     {
-        private readonly string _connectionString;
+        private readonly IDbConector _dbConector;
+        private IDbConnection Connection => new SqlConnection(_dbConector.ConnectionString);
 
-        public IncidentController()
+        public IncidentController(IDbConector dbConector)
         {
-            _connectionString = @"Server=localhost;Database=devops-db;Trusted_Connection=true;";
+            _dbConector = dbConector;
         }
 
-        private IDbConnection Connection => new SqlConnection(_connectionString);
-
         [HttpGet]
-        [EnableCors("AllowAllOrigins")]
+        [EnableCors(Startup.UnrestrictedAccessPolicy)]
         public IEnumerable<Incident> Get()
         {
             var incidents = new List<Incident>();

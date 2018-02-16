@@ -8,6 +8,8 @@ namespace devops_app_api
 {
     public class Startup
     {
+        public const string UnrestrictedAccessPolicy = "UnrestrictedAccessPolicy";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -15,15 +17,14 @@ namespace devops_app_api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(o =>
             {
-                o.AddPolicy("AllowAllOrigins",
-                    builder =>
+                o.AddPolicy(UnrestrictedAccessPolicy,
+                    b =>
                     {
-                        builder.AllowAnyOrigin()
+                        b.AllowAnyOrigin()
                             .AllowAnyHeader()
                             .AllowAnyMethod();
                     });
@@ -33,16 +34,17 @@ namespace devops_app_api
             {
                 c.SwaggerDoc("v1", new Info { Title = "devops-app-api", Version = "v1" });
             });
+            string connStr = Configuration.GetConnectionString("Db");
+            services.AddSingleton<IDbConector>(s => new DbConector(connStr));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors("AllowAllOrigins");
+            app.UseCors(UnrestrictedAccessPolicy);
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
