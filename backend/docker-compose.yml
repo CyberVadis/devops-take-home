@@ -1,0 +1,27 @@
+version: '1'
+services:
+  mongodb:
+    image: registry.xxx.pl/mongodb
+    environment:
+      MONGODB_ADMIN_PASS: admin
+      MONGODB_ADMIN_USER: admin
+      MONGODB_AUTH_DB: admin
+      MONGODB_DATABASE: dbxxx
+      MONGODB_PASS: dbxxx=
+      MONGODB_USER: xxx
+    volumes:
+    - /var/app-name/volumes/data/db:/data/db
+    ports:
+    - 27017:27017/tcp
+  devops-app-api:
+    image: registry.xxx.pl/app-name:1.1.2
+    environment:
+      RUN_ARGS: |-
+        --spring.profiles.active=prod
+        --spring.data.mongodb.password=xxx=
+        --spring.data.mongodb.username=user-name-xxx
+        --spring.data.mongodb.database=xxx-db-name
+        --server.ssl.enabled=false
+    volumes:
+    - /var/xxx-app/logs:/logs
+    - /var/xxx-app/xxx/archive:/xxx/archive
