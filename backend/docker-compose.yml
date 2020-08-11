@@ -1,0 +1,28 @@
+version: "3"
+services:
+    web:
+         build: ../frontend
+         ports:
+             - "80:80"
+         depends_on:
+             - app
+    app:
+        build: ./app/
+        ports:
+             - "8080:80"
+        depends_on:
+            - db
+    db:
+        build: ./db/
+        volumes:
+            - ./mssqldata:/var/opt/mssql/
+        # environment:
+        #     - SA_PASSWORD=1Qaz2wsx!
+        #     - ACCEPT_EULA=Y
+        #ports:
+        #    - "1433:1433"
+
+    # volume:
+    #     db-data:
+            
+            
