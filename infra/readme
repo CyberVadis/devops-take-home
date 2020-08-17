@@ -1,0 +1,22 @@
+kubectl apply -f app-deployment.yaml,app-service.yaml,db-deployment.yaml,db-service.yaml,web-deployment.yaml,web-service.yaml,db-deployment.yaml,db-claim0-persistentvolumeclaim.yaml
+kubectl get pods
+kubectl delete -f app-deployment.yaml,app-service.yaml,db-deployment.yaml,db-service.yaml,web-deployment.yaml,web-service.yaml,db-deployment.yaml,db-claim0-persistentvolumeclaim.yaml
+
+kubectl get pods
+kubectl get deployments
+kubectl get services
+
+kubectl proxy
+ubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
+https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/
+
+
+docker-compose up
+http://localhost/
+http://localhost:8080/swagger/
+
+
+https://docs.microsoft.com/pl-pl/azure/aks/tutorial-kubernetes-deploy-application
+
+https://kubernetes.io/docs/tasks/run-application/run-single-instance-stateful-application/

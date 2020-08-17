@@ -1,0 +1,21 @@
+version: "3"
+services:
+    web:
+         image: cybtakehomeant.azurecr.io/cybfrontend:latest
+         ports:
+             - "80:80"
+         depends_on:
+             - app
+    app:
+        image: cybtakehomeant.azurecr.io/cybbackendapp:latest
+        ports:
+             - "8080:80"
+        depends_on:
+            - db
+    db:
+        image: cybtakehomeant.azurecr.io/cybbackenddb:latest
+        volumes:
+            - ./mssqldata:/var/opt/mssql/
+        
+            
+            
