@@ -311,8 +311,8 @@ var ProcessHttpmsgService = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return baseURL; });
-var baseURL = 'http://localhost:8080/';
-
+var baseURL = 'http://40.68.20.254:8080/';
+// var baseURL = 'http://app:80/';
 
 /***/ }),
 

@@ -1,28 +1,21 @@
 version: "3"
 services:
     web:
-         build: ../frontend
+         image: cybtakehomeant.azurecr.io/cybfrontend:latest
          ports:
              - "80:80"
          depends_on:
              - app
     app:
-        build: ./app/
+        image: cybtakehomeant.azurecr.io/cybbackendapp:latest
         ports:
              - "8080:80"
         depends_on:
             - db
     db:
-        build: ./db/
+        image: cybtakehomeant.azurecr.io/cybbackenddb:latest
         volumes:
             - ./mssqldata:/var/opt/mssql/
-        # environment:
-        #     - SA_PASSWORD=1Qaz2wsx!
-        #     - ACCEPT_EULA=Y
-        #ports:
-        #    - "1433:1433"
-
-    # volume:
-    #     db-data:
+        
             
             
