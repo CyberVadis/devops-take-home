@@ -2,7 +2,7 @@
 
 ## Repository content
 - Folder with sample frontend application written in Angular
-- Folder with sample backend microservice written in .NET Core 2, C# and T-SQL
+- Folder with sample backend microservice written in .NET 7, C# and T-SQL
 
 The application is intended to show a list of recent security incidents.
 Security incidents from the database are presented first. Additional rows on the list are randomly generated.
@@ -25,7 +25,7 @@ The purpose of the exercise is to understand how you approach the problem, the d
 Please timebox your effort to 2 to 4 hours. An incomplete solution is not failing the exercise.
 
 ## Backend preparation
-Download [.NET Core 2.x SDK](https://www.microsoft.com/net/download/windows) and run:
+Download [.NET 7.0 SDK](https://www.microsoft.com/net/download/windows) and run:
 ```
 build.ps1
 ```
