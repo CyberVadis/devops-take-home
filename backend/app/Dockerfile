@@ -1,8 +1,9 @@
-FROM microsoft/aspnetcore-build:2.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /app
 
 # Copy csproj and restore as distinct layers
 COPY *.csproj ./
+COPY nuget.config ./
 RUN dotnet restore
 
 # Copy everything else and build
@@ -10,7 +11,7 @@ COPY . ./
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
-FROM microsoft/aspnetcore:2.0
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /app
-COPY --from=build-env /app/out .
+COPY --from=build /app/out .
 ENTRYPOINT ["dotnet", "devops-app-api.dll"]

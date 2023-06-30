@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace devops_app_api
@@ -29,23 +30,28 @@ namespace devops_app_api
                             .AllowAnyMethod();
                     });
             });
-            services.AddMvc();
+            services.AddControllers();
+            services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "devops-app-api", Version = "v1" });
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "devops-app-api", Version = "v1" });
             });
             string connStr = Configuration.GetConnectionString("Db");
             services.AddSingleton<IDbConector>(s => new DbConector(connStr));
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseRouting();
             app.UseCors(UnrestrictedAccessPolicy);
-            app.UseMvc();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
